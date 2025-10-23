@@ -31,7 +31,36 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+### Static-First Principle
+- [ ] All content pre-rendered at build time
+- [ ] No runtime server dependencies
+- [ ] Pages functional without JavaScript
+- [ ] Pure HTML/CSS with optional JS enhancements
+
+### Minimal Dependencies
+- [ ] Each dependency explicitly justified below
+- [ ] Native HTML/CSS solutions explored first
+- [ ] Security review completed for third-party libraries
+- [ ] Value proposition documented for each external package
+
+### Build Simplicity
+- [ ] Single command build process
+- [ ] Deterministic build artifacts
+- [ ] Minimal toolchain requirements
+- [ ] Reproducible build environment
+
+### Performance Budgets
+- [ ] Initial HTML/CSS < 50KB
+- [ ] Total page size < 100KB
+- [ ] No render-blocking resources
+- [ ] Lighthouse score > 90
+- [ ] Image optimization workflow defined
+
+### Content Separation
+- [ ] Content stored in markdown/structured data
+- [ ] Templates separate from content
+- [ ] No inline styles
+- [ ] No content-specific markup in templates
 
 ## Project Structure
 
@@ -50,45 +79,36 @@ specs/[###-feature]/
 ### Source Code (repository root)
 <!--
   ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
-  for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
+  for this feature. Expand with real paths as needed.
 -->
 
 ```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
+# Static Site Structure
 src/
-├── models/
-├── services/
-├── cli/
-└── lib/
+├── content/           # Markdown/structured content files
+│   ├── pages/        # Main page content
+│   ├── posts/        # Blog posts or similar
+│   └── data/         # Structured data (JSON, YAML)
+├── layouts/          # Page templates and layouts
+│   ├── base/         # Base templates
+│   └── partials/     # Reusable template parts
+├── styles/           # CSS/SCSS files
+│   ├── components/   # Component styles
+│   └── utilities/    # Utility classes
+├── scripts/         # Optional vanilla JS enhancements
+│   └── modules/     # JS modules if needed
+└── static/          # Static assets
+    ├── images/      # Original images
+    ├── fonts/       # Web fonts
+    └── generated/   # Build-time generated assets
 
 tests/
-├── contract/
-├── integration/
-└── unit/
+├── content/         # Content validation tests
+├── performance/     # Performance budget tests
+└── accessibility/   # A11y compliance tests
 
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
-backend/
-├── src/
-│   ├── models/
-│   ├── services/
-│   └── api/
-└── tests/
-
-frontend/
-├── src/
-│   ├── components/
-│   ├── pages/
-│   └── services/
-└── tests/
-
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
+public/             # Build output directory
+└── [generated site structure]
 ```
 
 **Structure Decision**: [Document the selected structure and reference the real

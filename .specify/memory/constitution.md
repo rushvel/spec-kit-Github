@@ -1,50 +1,68 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Constitution Sync Impact Report
+Version: None → 1.0.0 (Initial Version)
+Modified Principles:
+- Added: Static-First
+- Added: Minimal Dependencies
+- Added: Build Simplicity
+- Added: Performance First
+- Added: Content Separation
+
+Templates requiring updates:
+⚠ .specify/templates/plan-template.md
+⚠ .specify/templates/spec-template.md
+⚠ .specify/templates/tasks-template.md
+⚠ .specify/templates/commands/*.md
+
+No deferred placeholders or TODOs.
+-->
+
+# Static Site Spec Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Static-First
+All content must be pre-rendered at build time. No runtime server dependencies are allowed. Pages must be pure HTML/CSS with optional vanilla JavaScript enhancements that maintain functionality without JS enabled.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Minimal Dependencies
+Dependencies must be explicitly justified and approved. Native HTML/CSS solutions are preferred over framework abstractions. Third-party libraries require security review and must provide significant value over built-in capabilities.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Build Simplicity
+Build process must be reproducible with minimal tooling. Single command build (`npm run build` or equivalent) required. Build artifacts must be deterministic - same input produces identical output.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Performance First
+Performance budgets are non-negotiable: < 50KB initial HTML/CSS, < 100KB total per page. No render-blocking resources. Lighthouse performance score must exceed 90. Images require optimization and responsive variants.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. Content Separation
+Strict separation of content from presentation. Content stored in markdown or structured data files. Templates/layouts version-controlled separately from content. No inline styles or content-specific markup in templates.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Development Standards
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- HTML must be valid and semantic
+- CSS follows BEM naming convention
+- JavaScript must be unobtrusive and progressive enhancement only
+- Assets (images, fonts, etc.) optimized at build time
+- Development server must match production static hosting
+- Source maps included only in development builds
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## Deployment Requirements
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- Static hosting only (no server-side runtime)
+- HTTPS required for all environments
+- Cache policies defined per asset type
+- CDN distribution mandatory for production
+- Automated deployment on main branch changes
+- Preview deployments for pull requests
+- Backup and rollback procedures defined
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+Constitution compliance is mandatory for all contributions. Changes to these principles require:
+1. Written proposal with justification
+2. Performance/complexity impact analysis
+3. Migration plan for existing content
+4. Unanimous approval from maintainers
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Amendments must preserve the static-first and minimal dependency principles. Monthly audits verify continued compliance across all site sections.
+
+**Version**: 1.0.0 | **Ratified**: 2025-10-23 | **Last Amended**: 2025-10-23
