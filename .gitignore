@@ -1,0 +1,59 @@
+# Node.js / Next.js
+node_modules/
+.next/
+out/
+dist/
+build/
+coverage/
+
+# TypeScript
+*.tsbuildinfo
+.tscache/
+next-env.d.ts
+
+# Environment
+.env*
+!.env.example
+
+# Development
+.vscode/
+.idea/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+/coverage/
+/.nyc_output/
+
+# Build
+.webpack/
+.next/
+out/
+
+# Dependencies
+/node_modules/
+/.pnp
+.pnp.js
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local development
+*.local
+
+# Cache
+.eslintcache
+.npm
+.cache
+
+# Production
+/build
+/dist
