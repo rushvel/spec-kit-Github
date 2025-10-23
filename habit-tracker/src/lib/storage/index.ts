@@ -9,8 +9,20 @@ const STORAGE_KEYS = {
 export const storage = {
   getHabits(): Habit[] {
     if (typeof window === 'undefined') return [];
-    const habits = localStorage.getItem(STORAGE_KEYS.HABITS);
-    return habits ? JSON.parse(habits) : [];
+    const data = localStorage.getItem(STORAGE_KEYS.HABITS);
+    if (!data) return [];
+
+    try {
+      const habits = JSON.parse(data);
+      return habits.map((habit: any) => ({
+        ...habit,
+        createdAt: new Date(habit.createdAt),
+        updatedAt: new Date(habit.updatedAt),
+      }));
+    } catch (error) {
+      console.error('Error parsing habits:', error);
+      return [];
+    }
   },
 
   saveHabits(habits: Habit[]): void {
@@ -20,8 +32,21 @@ export const storage = {
 
   getHabitLogs(): HabitLog[] {
     if (typeof window === 'undefined') return [];
-    const logs = localStorage.getItem(STORAGE_KEYS.LOGS);
-    return logs ? JSON.parse(logs) : [];
+    const data = localStorage.getItem(STORAGE_KEYS.LOGS);
+    if (!data) return [];
+
+    try {
+      const logs = JSON.parse(data);
+      return logs.map((log: any) => ({
+        ...log,
+        date: new Date(log.date),
+        createdAt: new Date(log.createdAt),
+        updatedAt: new Date(log.updatedAt),
+      }));
+    } catch (error) {
+      console.error('Error parsing habit logs:', error);
+      return [];
+    }
   },
 
   saveHabitLogs(logs: HabitLog[]): void {
@@ -31,8 +56,19 @@ export const storage = {
 
   getAchievements(): Achievement[] {
     if (typeof window === 'undefined') return [];
-    const achievements = localStorage.getItem(STORAGE_KEYS.ACHIEVEMENTS);
-    return achievements ? JSON.parse(achievements) : [];
+    const data = localStorage.getItem(STORAGE_KEYS.ACHIEVEMENTS);
+    if (!data) return [];
+
+    try {
+      const achievements = JSON.parse(data);
+      return achievements.map((achievement: any) => ({
+        ...achievement,
+        unlockedAt: new Date(achievement.unlockedAt),
+      }));
+    } catch (error) {
+      console.error('Error parsing achievements:', error);
+      return [];
+    }
   },
 
   saveAchievements(achievements: Achievement[]): void {

@@ -16,7 +16,12 @@ const customJestConfig = {
     '^@styles/(.*)$': '<rootDir>/src/styles/$1',
     '^@types/(.*)$': '<rootDir>/src/types/$1',
     '^@utils/(.*)$': '<rootDir>/src/utils/$1',
+    '\\.module\\.css$': 'identity-obj-proxy',
+    '^uuid$': require.resolve('uuid'),
   },
+  transformIgnorePatterns: [
+    '/node_modules/(?!(uuid)/)',
+  ],
   testEnvironment: 'jest-environment-jsdom',
   testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
   collectCoverage: true,

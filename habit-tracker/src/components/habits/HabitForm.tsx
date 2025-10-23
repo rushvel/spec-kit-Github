@@ -4,10 +4,11 @@ import styles from '@/styles/components/HabitForm.module.css';
 
 interface HabitFormProps {
   onSubmit: (habit: Omit<Habit, 'id' | 'createdAt' | 'updatedAt'>) => void;
+  onCancel: () => void;
   initialValues?: Partial<Habit>;
 }
 
-export default function HabitForm({ onSubmit, initialValues }: HabitFormProps) {
+export default function HabitForm({ onSubmit, onCancel, initialValues }: HabitFormProps) {
   const [formData, setFormData] = useState({
     name: initialValues?.name || '',
     description: initialValues?.description || '',
@@ -24,7 +25,10 @@ export default function HabitForm({ onSubmit, initialValues }: HabitFormProps) {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [name]: name === 'target' ? Number(value) : value,
+    }));
   };
 
   return (
@@ -104,9 +108,14 @@ export default function HabitForm({ onSubmit, initialValues }: HabitFormProps) {
         />
       </div>
 
-      <button type="submit" className={styles.submitButton}>
-        Save Habit
-      </button>
+      <div className={styles.actions}>
+        <button type="button" onClick={onCancel} className={styles.cancelButton}>
+          Cancel
+        </button>
+        <button type="submit" className={styles.submitButton}>
+          Save Habit
+        </button>
+      </div>
     </form>
   );
 }
