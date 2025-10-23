@@ -5,6 +5,13 @@
 **Status**: Draft  
 **Input**: User description: "Habit tracker app. Let's use dummy data for habits. I should be able to add a habit, mark its progress - it should be gamified (e.g., achievements for hitting milestones). Landing page with dashboard and graphs. Ability to rate habits. Add/delete/re-order habits. Share a snapshot with friends."
 
+## Clarifications
+
+### Session 2025-10-23
+
+- Q1: Share snapshot format → A: Image export + downloadable JSON (both produced client-side).
+ - Q2: Streak day boundary → A: Count per user's device local calendar day (local midnight).
+
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Create & manage habits (Priority: P1)
@@ -86,6 +93,7 @@ Acceptance Scenarios:
 - Adding a habit with the same name: App should allow duplicates but surface a confirmation or suggestion to rename.
 - Reordering when only one habit exists: No-op and does not error.
 - Marking progress multiple times in same day: Only one completion per day counts toward streak (configurable via assumptions).
+- Timezone/day boundary: A user's "day" is their device local calendar day (local midnight). Cross-device timezone differences may result in differing local-day counts; multi-device sync is out of scope for MVP.
 - Offline interactions: With dummy/local storage, operations should work offline and sync is out of scope for MVP.
 
 ## Requirements *(mandatory)*
@@ -99,7 +107,7 @@ Acceptance Scenarios:
 - **FR-005**: The system MUST compute streaks and milestone achievements (e.g., 7/30/100 completions).
 - **FR-006**: Landing page MUST provide a dashboard with graphs (daily completions line chart, streaks, achievement list).
 - **FR-007**: Users MUST be able to rate habits on a 1-5 scale; average rating displayed.
-- **FR-008**: Users MUST be able to export/share a snapshot of the dashboard as an image or shareable link.
+ - **FR-008**: Users MUST be able to export/share a snapshot of the dashboard as an image and a downloadable JSON file (both client-side exports).
 - **FR-009**: The feature MUST use dummy/local data storage for prototype (no external auth or backend required).
 - **FR-010**: UI interactions MUST be testable via manual UI tests and automated unit tests where applicable.
 
@@ -151,7 +159,7 @@ Acceptance Scenarios:
 
 - Prototype will use local/dummy storage (e.g., in-memory or browser-local storage). No backend implementation required.
 - For graphs, prefer lightweight, dependency-minimal implementations (custom SVG or small chart helpers). Avoid heavy frameworks.
-- Sharing will create an export (image via HTML-to-canvas or JSON export) rather than a public URL.
+- Sharing will create client-side exports: a visual image (downloadable PNG/SVG) and a machine-readable JSON export containing summary stats and achievements. No public URL required.
 
 
 ---
